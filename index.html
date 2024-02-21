@@ -10,16 +10,16 @@
 
     <meta property="og:title" content="mini project" />
     <meta property="og:description" content="small mini project " />
-    <meta
-      property="og:image"
-      content="https://raw.githubusercontent.com/meangpu/miniproject-fix/main/gamePreview.webp"
-    />
+    <meta property="og:image" content="https://raw.githubusercontent.com/meangpu/miniproject-fix/main/gamePreview.webp" />
 
     <title>mini project</title>
     <link rel="shortcut icon" href="TemplateData/Icon.webp" />
     <link rel="stylesheet" href="TemplateData/style.css" />
   </head>
-  <body class="dark" style="background-color: #000">
+  <body
+    class="dark"
+    style="background-color: #000"
+  >
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas"></canvas>
     </div>
@@ -32,51 +32,46 @@
       </div>
     </div>
     <script>
-      const buildUrl = "Build";
-      const loaderUrl = buildUrl + "/miniproject-fix.loader.js";
-      const config = {
-        dataUrl: buildUrl + "/miniproject-fix.data.unityweb",
-        frameworkUrl: buildUrl + "/miniproject-fix.framework.js.unityweb",
-        codeUrl: buildUrl + "/miniproject-fix.wasm.unityweb",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "student",
-        productName: "mini project",
-        productVersion: "0.1",
-      };
+            const buildUrl = "Build";
+            const loaderUrl = buildUrl + "/miniproject-fix.loader.js";
+            const config = {
+              dataUrl: buildUrl + "/miniproject-fix.data.unityweb",
+              frameworkUrl: buildUrl + "/miniproject-fix.framework.js.unityweb",
+              codeUrl: buildUrl + "/miniproject-fix.wasm.unityweb",
+              streamingAssetsUrl: "StreamingAssets",
+              companyName: "student",
+              productName: "mini project",
+              productVersion: "0.1",
+            };
 
-      const container = document.querySelector("#unity-container");
-      const canvas = document.querySelector("#unity-canvas");
-      const loadingCover = document.querySelector("#loading-cover");
-      const progressBarEmpty = document.querySelector(
-        "#unity-progress-bar-empty"
-      );
-      const progressBarFull = document.querySelector(
-        "#unity-progress-bar-full"
-      );
-      const spinner = document.querySelector(".spinner");
+            const container = document.querySelector("#unity-container");
+            const canvas = document.querySelector("#unity-canvas");
+            const loadingCover = document.querySelector("#loading-cover");
+            const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
+            const progressBarFull = document.querySelector("#unity-progress-bar-full");
+            const spinner = document.querySelector('.spinner');
 
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        container.className = "unity-mobile";
-        config.devicePixelRatio = 1;
-      }
-      loadingCover.style.display = "";
 
-      const script = document.createElement("script");
-      script.src = loaderUrl;
-      script.onload = () => {
-        createUnityInstance(canvas, config, (progress) => {
-          spinner.style.display = "none";
-          progressBarEmpty.style.display = "";
-          progressBarFull.style.width = `${100 * progress}%`;
-        })
-          .then((unityInstance) => {
-            loadingCover.style.display = "none";
-          })
-          .catch((message) => {
-            alert(message);
-          });
-      };
-      document.body.appendChild(script);
+            if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+              container.className = "unity-mobile";
+              config.devicePixelRatio = 1;
+            }
+            loadingCover.style.display = "";
+
+            const script = document.createElement("script");
+            script.src = loaderUrl;
+            script.onload = () => {
+              createUnityInstance(canvas, config, (progress) => {
+                spinner.style.display = "none";
+                progressBarEmpty.style.display = "";
+                progressBarFull.style.width = `${100 * progress}%`;
+              }).then((unityInstance) => {
+                loadingCover.style.display = "none";
+              }).catch((message) => {
+                alert(message);
+              });
+            };
+            document.body.appendChild(script);
     </script>
   </body>
 </html>
